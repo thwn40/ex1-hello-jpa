@@ -20,17 +20,19 @@ public class JpaMain {
 //            member.setName("HelloA");
 //            em.persist(member);
             //read
-            Member findMember = em.find(Member.class, 1L);
-            List<Member> result = em.createQuery("select m from Member as m",Member.class).setFirstResult(1).setMaxResults(10).getResultList();
+//            Member findMember = em.find(Member.class, 1L);
+//            List<Member> result = em.createQuery("select m from Member as m",Member.class).setFirstResult(1).setMaxResults(10).getResultList();
+//
+//            for (Member member :
+//                    result) {
+//                System.out.println("member.getname = " + member.getName());
+//            }
+//            System.out.println("findMember = " + findMember.getId());
+//            System.out.println("findMember = " + findMember.getName());
 
-            for (Member member :
-                    result) {
-                System.out.println("member.getname = " + member.getName());
-            }
-            System.out.println("findMember = " + findMember.getId());
-            System.out.println("findMember = " + findMember.getName());
-
-
+            Member member = new Member();
+            member.setUsername("C");
+            em.persist(member);
 
             tx.commit();
 
@@ -40,8 +42,6 @@ public class JpaMain {
             em.close();
         }
 
-        //code
-        em.close();
 
         emf.close();
 
