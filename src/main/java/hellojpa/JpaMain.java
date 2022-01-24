@@ -29,10 +29,19 @@ public class JpaMain {
 //            }
 //            System.out.println("findMember = " + findMember.getId());
 //            System.out.println("findMember = " + findMember.getName());
+            Team team = new Team();
+            team.setName("TeamA");
+            em.persist(team);
 
             Member member = new Member();
-            member.setUsername("C");
+            member.setUsername("member1");
+            member.setTeam(team);
             em.persist(member);
+
+            Member findMember = em.find(Member.class, member.getId());
+            Team findMemberTeam = findMember.getTeam();
+            System.out.println("findMemberTeam = " + findMemberTeam.getName());
+
 
             tx.commit();
 
