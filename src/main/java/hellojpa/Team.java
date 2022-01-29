@@ -11,18 +11,21 @@ public class Team {
 @Id@GeneratedValue
     @Column(name = "TEAM_ID")
     private Long id;
-private String name;
+    private String name;
 
-    public List<Member> getMembers() {
-        return members;
-    }
+    @OneToMany
+    @JoinColumn(name = "TEAM_ID")
+    private List<Member> members = new ArrayList<>();
 
-    public void setMembers(List<Member> members) {
-        this.members = members;
-    }
+    @ManyToOne
+    @JoinColumn(name="TEAM_ID",insertable = false,updatable = false)
+    private Team team;
 
-    @OneToMany(mappedBy = "team")
-private List<Member> members = new ArrayList<>();
+
+    //일 대 다멤버의 있는 팀 변수명 team이라는 것에 의해 매핑이 됨, 읽기만 가능함
+//    @OneToMany(mappedBy = "team")
+//    private List<Member> members = new ArrayList<>();
+//
 
     public Long getId() {
         return id;
@@ -39,8 +42,13 @@ private List<Member> members = new ArrayList<>();
     public void setName(String name) {
         this.name = name;
     }
-    public void addMember(Member member){
-        member.setTeam(this);
-        members.add(member);
+
+    public List<Member> getMembers() {
+        return members;
     }
+
+    public void setMembers(List<Member> members) {
+        this.members = members;
+    }
+
 }
