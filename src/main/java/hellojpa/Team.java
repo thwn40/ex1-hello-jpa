@@ -6,12 +6,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Team {
+public class Team extends BaseEntity{
 
 @Id@GeneratedValue
     @Column(name = "TEAM_ID")
     private Long id;
     private String name;
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 
     @OneToMany
     @JoinColumn(name = "TEAM_ID")

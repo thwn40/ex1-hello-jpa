@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 
-public class Member {
+public class Member extends BaseEntity {
     @Id
     @GeneratedValue
     @Column(name = "MEMBER_ID")
@@ -18,15 +18,10 @@ public class Member {
 //    @Column(name = "TEAM_ID")
 //    private Long teamId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TEAM_ID")
     private Team team;
-    @OneToOne
-    @JoinColumn(name = "LOCKER_ID")
-    private Locker locker;
 
-    @OneToMany(mappedBy = "member")
-    private List<MemberProduct> memberProducts = new ArrayList<>();
 
 
     public Long getId() {
@@ -52,6 +47,12 @@ public class Member {
     public void changeTeam(Team team) {
         this.team = team;
     }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+
 }
 
 
