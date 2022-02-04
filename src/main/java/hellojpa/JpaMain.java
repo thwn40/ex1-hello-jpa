@@ -33,23 +33,12 @@ public class JpaMain {
 //            System.out.println("findMember = " + findMember.getId());
 //            System.out.println("findMember = " + findMember.getName());
 
-    Member member = new Member();
-    member.setUsername("member1");
-    member.setHomeAddress(new Address("city1", "street","10000"));
-    member.getFavoriteFoods().add("치킨");
-    member.getFavoriteFoods().add("피자");
-    member.getFavoriteFoods().add("족발");
-
-    member.getAddressesHistory().add(new AddressEntity("old1", "street","10000"));
-    member.getAddressesHistory().add(new AddressEntity("old2", "street","10000"));
-
-    em.persist(member);
-
-    em.flush();
-    em.clear();
-
+    List<Member> result = em.createQuery("select m From Member m where m.username like %kim%",Member.class).getResultList();
             System.out.println("=====================start=============");
-            Member findMember = em.find(Member.class, member.getId());
+
+            for (Member member : result) {
+                System.out.println("member = "+ member);
+            }
 //            Address a = findMember.getHomeAddress();
 //            findMember.setHomeAddress(new Address("new city",a.getStreet(),a.getZipcode()));
 //
