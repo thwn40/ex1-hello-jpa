@@ -18,12 +18,17 @@ public class JpaMain {
         tx.begin();
         try{
             //create
-//            Member member = new Member();
-//            member.setId(1L);
-//            member.setName("HelloA");
-//            em.persist(member);
+            Member member1 = new Member();
+            member1.setId(1L);
+            member1.setUsername("HelloA");
+            em.persist(member1);
+//            Member member2 = new Member();
+//            member2.setId(2L);
+//            member2.setUsername("HelloB");
+//            em.persist(member2);
             //read
-//            Member findMember = em.find(Member.class, 1L);
+            Member findMember = em.find(Member.class, 1L);
+            System.out.println(memb);
 //            List<Member> result = em.createQuery("select m from Member as m",Member.class).setFirstResult(1).setMaxResults(10).getResultList();
 //
 //            for (Member member :
@@ -33,12 +38,7 @@ public class JpaMain {
 //            System.out.println("findMember = " + findMember.getId());
 //            System.out.println("findMember = " + findMember.getName());
 
-    List<Member> result = em.createQuery("select m From Member m where m.username like %kim%",Member.class).getResultList();
-            System.out.println("=====================start=============");
 
-            for (Member member : result) {
-                System.out.println("member = "+ member);
-            }
 //            Address a = findMember.getHomeAddress();
 //            findMember.setHomeAddress(new Address("new city",a.getStreet(),a.getZipcode()));
 //
