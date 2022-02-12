@@ -29,21 +29,21 @@ public class JpaMain {
             //read
             Member findMember = em.find(Member.class, 1L);
             System.out.println(memb);
-//            List<Member> result = em.createQuery("select m from Member as m",Member.class).setFirstResult(1).setMaxResults(10).getResultList();
-//
-//            for (Member member :
-//                    result) {
-//                System.out.println("member.getname = " + member.getName());
-//            }
-//            System.out.println("findMember = " + findMember.getId());
-//            System.out.println("findMember = " + findMember.getName());
+            List<Member> result = em.createQuery("select m from Member as m",Member.class).setFirstResult(1).setMaxResults(10).getResultList();
+
+            for (Member member :
+                    result) {
+                System.out.println("member.getname = " + member.getName());
+            }
+            System.out.println("findMember = " + findMember.getId());
+            System.out.println("findMember = " + findMember.getName());
 
 
-//            Address a = findMember.getHomeAddress();
-//            findMember.setHomeAddress(new Address("new city",a.getStreet(),a.getZipcode()));
-//
-//            findMember.getAddressesHistory().remove(new AddressEntity("old1", "street","10000"));
-//            findMember.getAddressesHistory().add(new AddressEntity("newcity", "street","10000"));
+            Address a = findMember.getHomeAddress();
+            findMember.setHomeAddress(new Address("new city",a.getStreet(),a.getZipcode()));
+
+            findMember.getAddressesHistory().remove(new AddressEntity("old1", "street","10000"));
+            findMember.getAddressesHistory().add(new AddressEntity("newcity", "street","10000"));
 
 
             tx.commit();
